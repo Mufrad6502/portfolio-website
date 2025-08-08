@@ -12,16 +12,16 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, category, image, slug }: ProjectCardProps) {
   return (
-    <div className="group flex items-center justify-between gap-4 py-4 px-4 rounded-lg bg-gradient-to-r from-zinc-800/80 to-zinc-900/80 border border-zinc-700 shadow-sm hover:shadow-lg transition-all duration-300 mb-3 hover:border-cyan-500/60">
-      <div className="flex flex-col">
+    <div className="h-full flex flex-col justify-between group rounded-lg bg-gradient-to-r from-zinc-800/80 to-zinc-900/80 border border-zinc-700 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-cyan-500/60 p-4">
+      <div className="flex-1 flex flex-col min-h-[80px]">
         <span className="text-xs font-semibold uppercase tracking-wide text-cyan-400 mb-1 group-hover:text-blue-400 transition-colors">{category}</span>
-        <h3 className="font-bold text-lg text-white group-hover:text-cyan-300 transition-colors">{title}</h3>
+        <h3 className="font-bold text-lg text-white group-hover:text-cyan-300 transition-colors break-words">{title}</h3>
       </div>
       <a
         href={`https://github.com/your-github/${slug}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-xs font-medium px-3 py-2 rounded-md bg-cyan-900/30 text-cyan-300 border border-cyan-700 hover:bg-cyan-400 hover:text-zinc-900 hover:border-cyan-400 transition-colors duration-200 shadow-sm"
+        className="inline-flex items-center gap-1 text-xs font-medium px-3 py-2 rounded-md bg-cyan-900/30 text-cyan-300 border border-cyan-700 hover:bg-cyan-400 hover:text-zinc-900 hover:border-cyan-400 transition-colors duration-200 shadow-sm mt-4"
         title="View on GitHub"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="inline-block align-middle">

@@ -1,3 +1,11 @@
+// Required for static export (next export / GitHub Pages)
+import { getAllProjects } from "@/lib/data"
+
+export async function generateStaticParams() {
+  // getAllProjects returns all projects with their slugs
+  const projects = getAllProjects();
+  return projects.map((project) => ({ slug: project.slug }));
+}
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink, Github } from "lucide-react"

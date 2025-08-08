@@ -19,36 +19,24 @@ export function PortfolioHeader() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
-
-      // Only track sections on home page
       if (pathname !== "/") return
-
-      // Determine active section based on scroll position
       const sections = navItems.filter((item) => item.href.startsWith("#")).map((item) => item.href.substring(1))
-
       let foundSection = ""
-      // Find the current section in view
       for (const section of sections.reverse()) {
-        // Check from bottom to top
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
           if (rect.top <= 150) {
-            // If section is at or above 150px from viewport top
             foundSection = section
             break
           }
         }
       }
-
-      // If scrolled to top, set Home as active
       if (window.scrollY < 100) {
         foundSection = ""
       }
       setActiveSection(foundSection)
-      console.log("Active section:", foundSection)
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [navItems, pathname])
@@ -61,12 +49,24 @@ export function PortfolioHeader() {
     if (href.startsWith("#")) {
       // If we're not on home page, navigate to home first
       if (pathname !== "/") {
-        window.location.href = `/${href}` // This is fine for navigation, but you may want to use Next.js router for client-side navigation
+        window.location.href = `/${href}`
       } else {
-        // Smooth scroll to section
-        const element = document.getElementById(href.substring(1))
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
+        // Always scroll to top for Home
+        if (href === "#top") {
+          console.log("Home nav clicked: force scroll to top");
+          // Try window scroll first
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          // Also try to scroll the main container if present
+          const main = document.querySelector("main");
+          if (main && (main.scrollTop > 0 || main.scrollHeight > main.clientHeight)) {
+            main.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        } else {
+          // Smooth scroll to section
+          const element = document.getElementById(href.substring(1))
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" })
+          }
         }
       }
     }
@@ -93,36 +93,45 @@ export function PortfolioHeader() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
+        <nav className="hidden md:flex items-center space-x-2">
           {navItems.map((item) => {
             const isActive = Boolean(
               pathname === "/" &&
-              ((item.href === "/" && activeSection === "") ||
+              ((item.href === "#top" && activeSection === "") ||
                (item.href.startsWith("#") && item.href.substring(1) === activeSection))
             );
-            console.log(`Nav: ${item.label}, href: ${item.href}, activeSection: ${activeSection}, isActive: ${isActive}`);
-
             return (
               <button
                 key={item.label}
-                onClick={() => handleNavClick(item.href)}
+                onClick={e => { e.preventDefault(); handleNavClick(item.href); }}
                 className={cn(
-                  "px-3 py-2 text-sm relative group transition-all duration-300",
+                  "px-4 py-2 text-sm font-medium relative group transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2",
                   isActive ? "text-cyan-400" : "text-zinc-400 hover:text-white",
                 )}
+                tabIndex={0}
+                onKeyDown={e => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }
+                }}
+                aria-current={isActive ? "page" : undefined}
               >
-                <span className="relative z-10">{item.label}</span>
-
-                {/* Hover effect - subtle background glow */}
-                <span className="absolute inset-0 bg-cyan-500/0 rounded-md group-hover:bg-cyan-500/10 transition-all duration-300"></span>
-
-                {/* Hover effect - bottom border */}
+                <span className="relative z-10 flex items-center gap-1">
+                  {item.label}
+                  {isActive && (
+                    <span className="ml-1 w-2 h-2 rounded-full bg-cyan-400 shadow-cyan-400/40 shadow-md animate-pulse"></span>
+                  )}
+                </span>
+                {/* Animated underline */}
                 <span
                   className={cn(
-                    "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-4/5",
-                    isActive && "w-4/5",
+                    "absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300",
+                    isActive ? "w-4/5" : "w-0 group-hover:w-4/5"
                   )}
                 ></span>
+                {/* Subtle background on hover */}
+                <span className="absolute inset-0 bg-cyan-500/0 rounded-md group-hover:bg-cyan-500/10 transition-all duration-300"></span>
               </button>
             )
           })}
@@ -130,7 +139,7 @@ export function PortfolioHeader() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-zinc-400 hover:text-white transition-colors duration-300 relative overflow-hidden group"
+          className="md:hidden text-zinc-400 hover:text-white transition-colors duration-300 relative overflow-hidden group focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2"
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
@@ -145,19 +154,22 @@ export function PortfolioHeader() {
           "fixed inset-0 bg-black/95 z-40 flex flex-col pt-20 px-4 md:hidden transition-all duration-500",
           mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none",
         )}
+        tabIndex={-1}
+        onKeyDown={e => {
+          if (e.key === "Escape") setMobileMenuOpen(false)
+        }}
       >
-        <nav className="flex flex-col space-y-4">
+        <nav className="flex flex-col space-y-2">
           {navItems.map((item, index) => {
             const isActive =
               pathname === "/" &&
-              (item.href === "/" ? activeSection === "" : activeSection === item.href.substring(1))
-
+              ((item.href === "#top" && activeSection === "") || (item.href.startsWith("#") && item.href.substring(1) === activeSection))
             return (
               <button
                 key={item.label}
-                onClick={() => handleNavClick(item.href)}
+                onClick={e => { e.preventDefault(); handleNavClick(item.href); setMobileMenuOpen(false); }}
                 className={cn(
-                  "px-3 py-4 text-lg border-b border-zinc-800 relative group transition-all duration-300 text-left",
+                  "px-4 py-4 text-lg border-b border-zinc-800 relative group transition-all duration-300 text-left outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2",
                   isActive ? "text-cyan-400 border-cyan-400/30" : "text-zinc-300 hover:text-white hover:pl-5",
                 )}
                 style={{
@@ -165,10 +177,23 @@ export function PortfolioHeader() {
                   transform: mobileMenuOpen ? "translateX(0)" : "translateX(20px)",
                   opacity: mobileMenuOpen ? 1 : 0,
                 }}
+                tabIndex={0}
+                onKeyDown={e => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                    setMobileMenuOpen(false);
+                  }
+                }}
+                aria-current={isActive ? "page" : undefined}
               >
-                <span className="relative z-10">{item.label}</span>
-
-                {/* Hover effect - left border accent */}
+                <span className="relative z-10 flex items-center gap-1">
+                  {item.label}
+                  {isActive && (
+                    <span className="ml-2 w-2 h-2 rounded-full bg-cyan-400 shadow-cyan-400/40 shadow-md animate-pulse"></span>
+                  )}
+                </span>
+                {/* Animated left border accent */}
                 <span
                   className={cn(
                     "absolute left-0 top-1/2 -translate-y-1/2 w-0 h-1/2 bg-gradient-to-b from-cyan-400/20 to-blue-500/20 transition-all duration-300 group-hover:w-1",

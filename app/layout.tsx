@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator"
-import { AnimationProvider } from "@/contexts/animation-context"
+import RootProvider from "./root-provider"
 import { getMetaInfo } from "@/lib/data"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AnimationProvider>
+        <RootProvider>
           <ScrollProgressIndicator />
           {children}
-        </AnimationProvider>
+        </RootProvider>
       </body>
     </html>
   )
