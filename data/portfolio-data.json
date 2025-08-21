@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "Jane Doe | Product Designer",
-    "description": "Portfolio website showcasing product design work and skills"
+    "title": "Mufrad Mustahsin | QA Engineer",
+    "description": "Portfolio website showcasing work and skills"
   },
   "personal": {
-    "name": "Jane Doe",
-    "title": "Product Designer",
-    "location": "San Francisco, CA",
+    "name": "Mufrad Mustahsin",
+    "title": "Software Quality Assurance Engineer",
+    "location": "Dhaka, Bangladesh",
     "avatar": "/confident-professional.png",
-    "email": "jane.doe@example.com",
-    "phone": "+1 (415) 555-2671",
-    "workingHours": "Monday - Friday, 9am - 5pm PST",
+    "email": "mufradmustahsin152@gmail.com",
+    "phone": "+8801684214201",
+    "workingHours": "Anytime",
     "availableForWork": true,
-    "badges": ["UI/UX", "Product Design", "Prototyping"],
+    "badges": ["QA", "Automation Testing", "Manual Testing"],
     "social": [
       {
         "platform": "GitHub",

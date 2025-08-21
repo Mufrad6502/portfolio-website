@@ -1,80 +1,59 @@
 {
   "meta": {
-    "title": "Jane Doe | Product Designer",
-    "description": "Portfolio website showcasing product design work and skills"
+    "title": "Mufrad Mustahsin | QA Engineer",
+    "description": "Portfolio website showcasing work and skills"
   },
   "personal": {
-    "name": "Jane Doe",
-    "title": "Product Designer",
-    "location": "San Francisco, CA",
-    "avatar": "/placeholder.svg?height=112&width=112",
-    "email": "jane.doe@example.com",
-    "phone": "+1 (415) 555-2671",
-    "workingHours": "Monday - Friday, 9am - 5pm PST",
+    "name": "Mufrad Mustahsin",
+    "title": "Software Quality Assurance Engineer",
+    "location": "Dhaka, Bangladesh",
+    "avatar": "/confident-professional.png",
+    "email": "mufradmustahsin152@gmail.com",
+    "phone": "+8801684214201",
+    "workingHours": "Anytime",
     "availableForWork": true,
-    "badges": ["UI/UX", "Product Design", "Prototyping"],
+    "badges": ["QA", "Automation Testing", "Manual Testing"],
     "social": [
       {
         "platform": "GitHub",
-        "url": "#",
+        "url": "https://github.com/Mufrad6502",
         "icon": "Github"
       },
       {
         "platform": "LinkedIn",
-        "url": "#",
+        "url": "https://www.linkedin.com/in/mufrad-mustahsin-50b8ab1a5/",
         "icon": "Linkedin"
-      },
-      {
-        "platform": "Twitter",
-        "url": "#",
-        "icon": "Twitter"
-      },
-      {
-        "platform": "Instagram",
-        "url": "#",
-        "icon": "Instagram"
       }
+      
     ]
   },
   "about": {
-    "bio": "I create user-centered digital experiences that solve real problems. Passionate about accessibility and ethical design with over 5 years of experience in product design and user experience research.",
+"bio": "Experienced in ensuring software quality through rigorous testing and analysis. Excel at identifying issues and implementing solutions to enhance functionality and performance. Committed to delivering reliable and user-friendly software products.",
     "focus": [
-      "Creating intuitive and accessible digital products",
-      "Leading design teams and establishing design systems",
-      "Conducting user research to inform product decisions"
+      "Designing and implementing automated test frameworks using Playwright and Cypress",
+      "Integrating QA automation into CI/CD pipelines to ensure reliable, scalable releases",
+      "Conducting functional, regression, API, and performance testing across web and mobile platforms",
+      "Establishing and improving QA processes, mentoring junior engineers, and collaborating with cross-functional teams"
     ],
     "languages": [
       {
         "name": "English",
-        "proficiency": "Native",
+        "proficiency": "Professional",
         "level": 100,
         "flag": "🇺🇸"
       },
       {
-        "name": "Spanish",
-        "proficiency": "Fluent",
-        "level": 80,
-        "flag": "🇪🇸"
-      },
-      {
-        "name": "French",
-        "proficiency": "Intermediate",
-        "level": 60,
-        "flag": "🇫🇷"
-      },
-      {
-        "name": "German",
-        "proficiency": "Basic",
-        "level": 30,
-        "flag": "🇩🇪"
+        "name": "Bangla",
+        "proficiency": "Native",
+        "level": 100,
+        "flag": "🇺🇸"
       }
-    ],
-    "interests": ["Design Systems", "Accessibility", "Typography", "Motion Design", "Photography"]
+    ]
   },
   "navigation": [
     {
       "label": "Home",
-      "href": "/"
+      "href": "#top"
     },
     {
       "label": "Experience",
@@ -95,16 +74,16 @@
   ],
   "experience": [
     {
-      "title": "Senior Product Designer",
-      "company": "TechCorp Inc.",
-      "period": "2021 - Present",
-      "description": "Lead the design of flagship products, managing a team of 3 designers. Implemented a design system that reduced design inconsistencies by 60% and improved development time by 40%. Conducted user research and usability testing to inform product decisions.",
+      "title": "Software Quality Assurance Engineer",
+      "company": "rgbcode Ltd.",
+      "period": "Jan 2024 - Present",
+      
       "achievements": [
-        "Redesigned the main dashboard, increasing user engagement by 35%",
-        "Led the design for 3 major feature launches, contributing to a 25% increase in user retention",
-        "Established design processes that improved team collaboration and product quality"
+        "Conducted end-to-end testing of WordPress applications (Frontend & Backend), improving release quality and lowering post-release defects by 30%",
+        "Streamlined QA–developer collaboration by clarifying complex technical issues, accelerating bug resolution cycles",
+        "Led the creation of Playwright-based automation tests integrated with GitHub Actions, reducing regression testing time by 40%"
       ],
-      "technologies": ["Figma", "Adobe XD", "Prototyping", "User Research"]
+      "technologies": ["Wordpress", "Postman", "Playwright", "Automation Testing", "Manual Testing", "CI/CD", "GitHub Actions", "Git", "Jira", "JavaScript", "HTML", "CSS"]
     },
     {
       "title": "UX Designer",
@@ -137,19 +116,19 @@
         "name": "Certified UX Professional",
         "issuer": "Nielsen Norman Group",
         "date": "2022",
-        "logo": "/placeholder.svg?height=40&width=40"
+        "logo": "/nng-logo.png"
       },
       {
         "name": "Professional Product Designer",
         "issuer": "Interaction Design Foundation",
         "date": "2021",
-        "logo": "/placeholder.svg?height=40&width=40"
+        "logo": "/generic-military-logo.png"
       },
       {
         "name": "Design Leadership Certification",
         "issuer": "IDEO",
         "date": "2020",
-        "logo": "/placeholder.svg?height=40&width=40"
+        "logo": "/ideo-logo.png"
       }
     ],
     "education": [
@@ -157,13 +136,13 @@
         "degree": "Master of Fine Arts in Design",
         "institution": "Rhode Island School of Design",
         "year": "2015-2017",
-        "logo": "/placeholder.svg?height=40&width=40"
+        "logo": "/generic-art-school-logo.png"
       },
       {
         "degree": "Bachelor of Arts in Visual Communication",
         "institution": "California Institute of the Arts",
         "year": "2011-2015",
-        "logo": "/placeholder.svg?height=40&width=40"
+        "logo": "/calarts-logo.png"
       }
     ],
     "skills": [
